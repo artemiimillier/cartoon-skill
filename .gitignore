@@ -1,0 +1,26 @@
+# Dependencies and build output
+node_modules
+**/node_modules
+.remotion/
+out/
+**/out/
+
+# Keep rendered media out of Git except docs previews
+*.mp4
+*.mov
+*.wav
+*.mp3
+!docs/*.mp4
+.claude/skills/cartoon/kit/public/*
+!.claude/skills/cartoon/kit/public/.gitkeep
+
+# Personal studio state
+setup.json
+
+# Local system files
+.DS_Store
+__pycache__/
+*.pyc
+.env
+
+!.claude/skills/cartoon/kit/public/demo-sfx.wav

@@ -1,0 +1,12 @@
+node_modules
+out/
+.remotion/
+# Secrets and personal data: API keys, chat ID, source photo
+.env
+setup.json
+public/hero/source/
+public/hero/photo*
+public/**/*.wav
+public/**/*.mp3
+
+!public/demo-sfx.wav

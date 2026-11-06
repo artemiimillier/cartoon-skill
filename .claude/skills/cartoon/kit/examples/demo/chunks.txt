@@ -1,0 +1,13 @@
+# English demo; each line is a caption phrase, *word* is emphasized.
+Everyone wants animated *explainers*,
+but nobody shows *how* to build them.
+Here are *three* steps.
+First, put the *skill* in a folder
+for your *project*.
+Second, give Claude Code *one* line:
+"Make a cartoon from this *script*."
+Third, it maps the text to *words*,
+draws every *scene*,
+and checks the *frames* itself.
+That's *it*.
+Install it and *try*.
