@@ -1,6 +1,6 @@
 # English demo storyboard
 
-Synthetic timing, no generated narration. This demonstrates rendering after setup; new production still requires Viralex AI MCP.
+Synthetic timing, no generated narration. This demonstrates rendering after setup.
 
 | Beat | Object and word-driven action | Headline | State | Pose |
 |---|---|---|---|---|

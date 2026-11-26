@@ -3,17 +3,15 @@
 
   python3 scripts/onboarding.py init
   python3 scripts/onboarding.py status
-  python3 scripts/onboarding.py set steps.mcp=true viralex.credits=null
+  python3 scripts/onboarding.py set steps.lang=true lang=en
   python3 scripts/onboarding.py doctor
 
-Values use JSON when possible; otherwise they are strings. Verify MCP before marking its step complete."""
+Values use JSON when possible; otherwise they are strings. Verify each step before marking it complete."""
 import json, platform, re, shutil, subprocess, sys
-from datetime import datetime, timezone
 
 from _common import EXAMPLE, SETUP, STUDIO, read_setup, set_path, write_setup
 
 ORDER = [
-    ('mcp', 'Viralex AI MCP — required'),
     ('lang', 'language'),
     ('niche', 'niche and profile'),
     ('style', 'visual style from a reference'),
@@ -48,8 +46,6 @@ def cmd_status():
     for k, title in ORDER:
         print(f"  {'✓' if st.get(k) else '·'} {k:<9} {title}")
     k, title = next_step(data)
-    if not data.get('steps', {}).get('mcp'):
-        print('GATE: connect and verify Viralex AI MCP before any other work.')
     print(f'Next step: {k} — {title}' if k else 'Setup complete: ready to create videos.')
 
 
@@ -66,16 +62,8 @@ def cmd_set(pairs):
         if k.lower().endswith(('token', 'api_key', 'apikey', 'secret', 'password')):
             sys.exit('Never store secrets in setup.json; use .env.')
         set_path(data, k, val)
-    if not data.get('steps', {}).get('mcp'):
-        allowed = ('viralex.', 'steps.mcp')
-        if any(not pair.split('=', 1)[0].startswith(allowed) for pair in pairs):
-            sys.exit('GATE: verify Viralex AI MCP before configuring other steps.')
-    if data.get('steps', {}).get('mcp') and not data.get('viralex', {}).get('connected'):
-        sys.exit('GATE: record a successful Viralex AI account check before completing MCP setup.')
     if data.get('steps', {}).get('done') and not all(data['steps'].get(k) for k, _ in ORDER if k != 'done'):
         sys.exit('Setup is incomplete: verify every required step before marking done.')
-    if any(p.startswith('viralex.') for p in pairs):
-        set_path(data, 'viralex.checked_at', datetime.now(timezone.utc).isoformat(timespec='seconds'))
     write_setup(data)
     cmd_status()
 
@@ -88,8 +76,6 @@ def run(cmd):
 
 
 def cmd_doctor():
-    if not read_setup().get('steps', {}).get('mcp'):
-        sys.exit('GATE: verify Viralex AI MCP before checking the environment.')
     osn = platform.system()
     hints = {
         'Darwin': {'node': 'brew install node', 'ffmpeg': 'brew install ffmpeg'},

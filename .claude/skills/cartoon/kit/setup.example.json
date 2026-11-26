@@ -1,10 +1,8 @@
 {
   "version": 1,
   "lang": "en",
-  "brand": "viralex",
   "steps": {
     "lang": false,
-    "mcp": false,
     "niche": false,
     "style": false,
     "hero": false,
@@ -12,11 +10,6 @@
     "env": false,
     "telegram": false,
     "done": false
-  },
-  "viralex": {
-    "connected": false,
-    "credits": null,
-    "checked_at": null
   },
   "niche": {
     "profile": null,

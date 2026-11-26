@@ -7,7 +7,7 @@ Read this file before storyboarding or editing scenes. Setup and reference selec
 This format works for a chain of visible actions: a tutorial, a workflow, a tool explanation, or a list of mistakes and fixes. Use one narrator and a concrete object for every phrase. For abstract arguments, two-person dialogue, or live-action stories, explain the mismatch and propose an action-based script first.
 
 - **Supplied script:** keep the user's words. Split into caption phrases without silently rewriting. If it runs beyond roughly a minute, propose specific cuts and get agreement.
-- **Reference video:** use the analysis from `xray_video`. Map actions every half-second, the opening mechanism, objects, speech relationships, and transitions. Borrow the structure, never footage, handles, metrics, text, or someone else's results.
+- **Reference video:** use the user's video file. Extract frames every half-second, transcribe it when possible, and map the actions, the opening mechanism, objects, speech relationships, and transitions. Borrow the structure, never footage, handles, metrics, text, or someone else's results.
 - **Topic only:** write an original twenty-to-forty-five-second script with a hook, steps, and payoff. Obtain script approval before narration.
 
 Write numbers as spoken words, such as “seventy-two.” Use familiar English product names, such as “Claude Code.”

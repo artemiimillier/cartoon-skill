@@ -1,6 +1,6 @@
 # Cartoon Skill
 
-Say **“Cartoon”** in [Claude Code](https://code.claude.com/docs/en/overview) and turn an idea into a vertical animated explainer, with your own character, visual style, and voice. Use Viralex AI to find ideas gaining traction in your niche, then build scenes in code: windows open, the cursor clicks, words trigger actions, and a sticker character stays with you throughout.
+Say **“Cartoon”** in [Claude Code](https://code.claude.com/docs/en/overview) and turn an idea into a vertical animated explainer, with your own character, visual style, and voice. Start from your niche or a reference video, then build scenes in code: windows open, the cursor clicks, words trigger actions, and a sticker character stays with you throughout.
 
 ![English demo frames](docs/strip.jpg)
 
@@ -38,20 +38,16 @@ For every project, place the `cartoon` skill folder in `~/.claude/skills/`. On f
 
 Open Claude Code in the project and say **“Cartoon.”** Progress is saved in `cartoon/setup.json`, so you can stop and resume.
 
-1. **Connect Viralex AI MCP.** This is required before anything else. Viralex AI supplies niche trends and reference-video analysis. Visit [viralex.ai](https://viralex.ai), then connect `https://mcp.viralex.ai/mcp` using either route:
-   - **claude.ai → Settings → Connectors → Add custom connector**, enter the URL and authenticate.
-   - Run `claude mcp add --transport http viralex https://mcp.viralex.ai/mcp`, then open `/mcp` in Claude Code and authenticate. Add `--scope user` if you want the connection across projects.
-   Restart or refresh the session. Claude must verify the connection with the free `account` tool. If the server does not expose that tool or the call fails, setup stays at this step. No gift credits are promised.
-2. **Choose your niche.** Share your Instagram or TikTok profile, or describe what you make. Claude helps choose the relevant niches.
-3. **Choose a visual style.** Share a reference video or use the built-in cobalt-on-graph-paper look. The skill studies layout and motion without copying the creator's footage, identity, or claims.
-4. **Choose a character.** Use your own photo to make a pose sheet in ChatGPT or Gemini, use an image API, or keep Beep.
-5. **Choose a voice.** Record each script yourself or use an ElevenLabs voice clone you have permission to use.
-6. **Check the environment.** Claude checks Node, npm, Python, and ffmpeg, then installs the studio dependencies.
-7. **Optional: connect your Telegram bot.** Receive finished files privately. You publish them yourself.
+1. **Choose your niche.** Share your Instagram or TikTok profile, or describe what you make. Claude helps choose the relevant niches.
+2. **Choose a visual style.** Share a reference video file or use the built-in cobalt-on-graph-paper look. The skill studies layout and motion without copying the creator's footage, identity, or claims.
+3. **Choose a character.** Use your own photo to make a pose sheet in ChatGPT or Gemini, use an image API, or keep Beep.
+4. **Choose a voice.** Record each script yourself or use an ElevenLabs voice clone you have permission to use.
+5. **Check the environment.** Claude checks Node, npm, Python, and ffmpeg, then installs the studio dependencies.
+6. **Optional: connect your Telegram bot.** Receive finished files privately. You publish them yourself.
 
 Then try:
 
-- **“Cartoon”** — find promising references from the past forty-eight hours in your niche.
+- **“Cartoon”** — start from your niche, or ask for a few ideas from recent videos found by web search.
 - **“Cartoon from this link…”** — use a specific reference.
 - **“Cartoon about…”** — start with your own topic.
 
@@ -59,7 +55,7 @@ Claude shows the full script for approval before narration. Then it creates the 
 
 ## Try the bundled demo
 
-The demo has synthetic timing and event sounds, with no generated narration. It is a rendering example; producing a new video through the skill still requires the MCP setup gate.
+The demo has synthetic timing and event sounds, with no generated narration. It is a rendering example.
 
 ```bash
 cd .claude/skills/cartoon/kit
@@ -73,7 +69,7 @@ npx remotion render src/index.ts Demo out/demo.mp4
 
 ```text
 .claude/skills/cartoon/
-├── SKILL.md             Setup, trends, script approval, production, delivery
+├── SKILL.md             Setup, topic selection, script approval, production, delivery
 ├── method.md            Word-driven storyboard and animation workflow
 └── kit/
     ├── setup.example.json
@@ -88,7 +84,7 @@ npx remotion render src/index.ts Demo out/demo.mp4
 
 ## Requirements
 
-- Claude Code and an authenticated Viralex AI MCP connection.
+- Claude Code.
 - Node.js 18+ and npm. Remotion downloads its headless browser.
 - Python 3.9+; the helper scripts use the standard library unless noted.
 - ffmpeg and ffprobe for audio, frame sheets, and Telegram compression.
@@ -103,9 +99,13 @@ Keep optional API keys in `cartoon/.env`: `OPENAI_API_KEY` or `GEMINI_API_KEY` f
 - **Fonts:** replace the imports from `@remotion/google-fonts` in `theme.ts`.
 - **Character:** `src/hero/current.ts` selects Beep or your own atlas. `scripts/atlas_rig.py --install` connects an atlas; inspect the rig before rendering.
 
+## Credits and changes
+
+This skill was created by [Arti Miller](https://instagram.com/arti.miller) and is published at `artemiimillier/cartoon-skill`. This version removes the Viralex AI dependency: setup no longer requires a Viralex MCP connection, and topic and reference analysis use web search and ffmpeg frame extraction instead. Otherwise the workflow is unchanged.
+
 ## License
 
-The code is MIT licensed; see [LICENSE](LICENSE). Remotion has its [own license](https://www.remotion.dev/license). Check its current terms for your use. Bundled font families use the SIL Open Font License.
+The code is MIT licensed; see [LICENSE](LICENSE). The original copyright notice is kept, as the license requires. Remotion has its [own license](https://www.remotion.dev/license). Check its current terms for your use. Bundled font families use the SIL Open Font License.
 
 ---
 
